@@ -1,0 +1,25 @@
+if [ -z "$EASYRSA_CALLER" ]; then
+    echo "You appear to be sourcing an Easy-RSA 'vars' file." >&2
+    echo "This is no longer necessary and is disallowed. See the section called" >&2
+    echo "'How to use this file' near the top comments for more details." >&2
+    return 1
+fi
+
+set_var  EASYRSA_ROOT          "/opt/easy-rsa"
+set_var  EASYRSA_EXT_DIR       "$EASYRSA_ROOT/x509-types"
+set_var  EASYRSA               "/opt/easy-rsa/easyrsa"
+# This next var has to match the value in common.inc
+set_var  EASYRSA_PKI           "/opt/internal-cas/internal-cas-data/ca/pki"
+set_var  EASYRSA_DN            "org"
+set_var  EASYRSA_REQ_COUNTRY   "US"
+set_var  EASYRSA_REQ_PROVINCE  "Maryland"
+set_var  EASYRSA_REQ_CITY      "Baltimore"
+set_var  EASYRSA_REQ_ORG       "my-ou.example.com"
+set_var  EASYRSA_REQ_EMAIL     "ca@example.com"
+set_var  EASYRSA_REQ_OU        "CACERTS"
+
+# 1826 days == 5 years
+# 3650 days == 10 years
+set_var EASYRSA_CERT_EXPIRE    3650
+
+set_var EASYRSA_BATCH          "true"
